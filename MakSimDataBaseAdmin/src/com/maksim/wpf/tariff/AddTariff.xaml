@@ -1,0 +1,119 @@
+﻿<Window x:Class="MakSimDataBaseAdmin.src.com.maksim.wpf.tariff.AddTariff"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MakSimDataBaseAdmin.src.com.maksim.wpf.tariff"
+        mc:Ignorable="d"
+        Title="Слздать тариф" 
+                Height="394.693" Width="420.905"
+        MaxHeight="450" MaxWidth="420.905"
+                        Icon="/src/assets/Мак-Sim_logo_nobackground.png"
+        Background="#383B40"
+        WindowStartupLocation="CenterScreen">
+  
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="374*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal" Grid.RowSpan="2">
+            <StackPanel
+                Margin="20" Width="166">
+                <TextBlock
+                    Text="Название:"
+                    Foreground="White"
+                    FontSize="20"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="NameBox"/>
+                <TextBlock
+                    Text="Описание:"
+                    Foreground="White"
+                    FontSize="20"
+                    Margin="0 30 0 0"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="DescriptionBox"/>
+                <TextBlock
+                    Text="Цена:"
+                    Foreground="White"
+                    FontSize="20"
+                    Margin="0 30 0 0"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="PriceBox"/>
+                <TextBlock
+                    Margin="0 45 0 0"
+                    x:Name="ErrorLabel"
+                    Visibility="{Binding ErrorState}"
+                    HorizontalAlignment="Center"
+                    Foreground="Red"
+                    FontSize="10"
+                    TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel
+                Margin="20"
+                Width="166">
+                <TextBlock
+                    Text="Минуты:"
+                    Foreground="White"
+                    FontSize="20"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="MinutesBox"/>
+                <TextBlock
+                    Text="Гигабайты:"
+                    Foreground="White"
+                    FontSize="20"
+                    Margin="0 30 0 0"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="GigagytesBox"/>
+                <TextBlock
+                    Text="SMS:"
+                    Foreground="White"
+                    FontSize="20"
+                    Margin="0 30 0 0"/>
+                <TextBox
+                    Height="25"
+                    Style="{StaticResource TextBoxBlack}"
+                    TextAlignment="Center"
+                    x:Name="SMSBox"/>
+                <Button
+                    Margin="0 30 0 0"
+                    Content="Создать"
+                    Height="40"
+                    Width="120"
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    Style="{DynamicResource ButtonBlack}"
+                    Click="Button_Add_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Text="?"
+            FontSize="20"
+            Margin="0,0,13,13"
+            Background="#383B40"
+            Foreground="#fff"
+            ToolTip="Для того чтобы установить 'Безлимит' поставьте в поле значение -1" 
+            TextAlignment="Center" Height="27" Width="9"/>
+    </Grid>
+</Window>

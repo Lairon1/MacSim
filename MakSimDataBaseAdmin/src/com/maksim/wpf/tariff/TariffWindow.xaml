@@ -1,0 +1,142 @@
+﻿<Window x:Class="MakSimDataBaseAdmin.src.com.maksim.wpf.tariff.TariffWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MakSimDataBaseAdmin.src.com.maksim.wpf.tariff"
+        mc:Ignorable="d"
+        Title="Тарифы" Height="450" Width="800"
+                Icon="/src/assets/Мак-Sim_logo_nobackground.png"
+        Background="#383B40"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="629*"/>
+        </Grid.ColumnDefinitions>
+        <ListView
+            Grid.Column="1"
+            ItemsSource="{Binding Tariffs}"
+            MouseDoubleClick="ListView_MouseDoubleClick"
+            x:Name="TariffListView" Style="{DynamicResource ListViewBlack}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+                        BorderThickness="1" 
+                        CornerRadius="10"
+                        Background="#1F2023">
+                        <StackPanel
+                            
+                                 Margin="5"
+                                 Orientation="Vertical">
+
+                            <TextBlock Text="{Binding Path=Price, StringFormat=Цена: {0} р.}"
+                                           HorizontalAlignment="Right"
+                                           Foreground="#fff"
+                                           FontSize="15"
+                                           />
+                            <TextBlock Text="{Binding Path=Name, StringFormat=Название: {0}}"
+                                           Foreground="#fff"
+                                           FontSize="15"
+                                           Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding Path=Description, StringFormat=Описание: {0}}"
+                                           Margin="10"
+                                           Foreground="#fff"
+                                           FontSize="15"/>
+                            <TextBlock
+                                    Margin="10"
+                                    Foreground="#fff"
+                                    FontSize="15">
+                                <TextBlock.Text>
+                                    <MultiBinding  StringFormat="Гигабайты: {0} | Минуты: {1} | SMS: {2}">
+                                        <Binding Path="WPFGigabytes"/>
+                                        <Binding Path="WPFMinutes"/>
+                                        <Binding Path="WPFSMS"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel>
+            <Button
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="20"
+            Style="{DynamicResource ButtonBlack}"
+            Background="#383B40"
+            Click="Button_Profile_Click"
+            ToolTip="Ваш профиль"
+                Margin="0 10 0 0"
+            >
+                <StackPanel
+                    Orientation="Horizontal">
+                    <Image Source="/src/assets/account_avatar.png"
+                       MaxWidth="60"/>
+                    <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                        Margin="15 0 0 0"
+                    Text="Профиль"
+                    FontSize="20"
+                    Background="#383B40"
+                    Foreground="#fff"
+                    TextAlignment="Center"/>
+                </StackPanel>
+
+            </Button>
+            <Button
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="20"
+            Style="{DynamicResource ButtonBlack}"
+            Background="#383B40"
+            Margin="0 10 0 0"
+            >
+                <StackPanel
+                    Orientation="Horizontal">
+                    <Image Source="/src/assets/clients_icon.png"
+                       MaxWidth="60"/>
+                    <TextBlock
+                        Margin="15 0 0 0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="Тех поддержка"
+                    FontSize="20"
+                    Background="#383B40"
+                    Foreground="#fff"
+                    ToolTip="Для редактирования тарифа нажмите по нему 2 раза ЛКМ" 
+                    TextAlignment="Center"/>
+                </StackPanel>
+
+            </Button>
+        </StackPanel>
+        <Button
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="+"
+            FontSize="20"
+            Width="50"
+            Height="50"
+            Style="{DynamicResource ButtonBlack}"
+            Click="Button_Add_Click"
+            ToolTip="Добавить тариф"
+            />
+        <TextBlock
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Text="?"
+            FontSize="20"
+            Margin="13"
+            Background="#383B40"
+            Foreground="#fff"
+            ToolTip="Для редактирования тарифа нажмите по нему 2 раза ЛКМ" 
+            TextAlignment="Center"/>
+    </Grid>
+</Window>

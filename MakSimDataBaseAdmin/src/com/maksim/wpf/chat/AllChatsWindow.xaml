@@ -1,0 +1,69 @@
+﻿<Window x:Class="MakSimDataBaseAdmin.src.com.maksim.wpf.chat.AllChatsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MakSimDataBaseAdmin.src.com.maksim.wpf.chat"
+        mc:Ignorable="d"
+        Title="Чаты" Height="450"
+        Icon="/src/assets/Мак-Sim_logo_nobackground.png"
+        Background="#383B40"
+        WindowStartupLocation="CenterScreen" Width="739">
+    <Grid>
+        <ListView
+            Grid.Column="1"
+            ItemsSource="{Binding Tariffs}"
+            Background="#27292D"
+            BorderBrush="#383B40"
+            x:Name="TariffListView">
+            <ListView.ItemContainerStyle>
+                <Style 
+                    TargetType="ListViewItem">
+                    <Setter 
+                        Property="HorizontalContentAlignment"
+                        Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border 
+                        BorderThickness="1" 
+                        CornerRadius="10"
+                        Background="#1F2023">
+                        <StackPanel
+                            
+                                 Margin="5"
+                                 Orientation="Vertical">
+
+                            <TextBlock Text="{Binding Path=Price, StringFormat=Цена: {0} р.}"
+                                           HorizontalAlignment="Right"
+                                           Foreground="#fff"
+                                           FontSize="15"
+                                           />
+                            <TextBlock Text="{Binding Path=Name, StringFormat=Название: {0}}"
+                                           Foreground="#fff"
+                                           FontSize="15"
+                                           Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding Path=Description, StringFormat=Описание: {0}}"
+                                           Margin="10"
+                                           Foreground="#fff"
+                                           FontSize="15"/>
+                            <TextBlock
+                                    Margin="10"
+                                    Foreground="#fff"
+                                    FontSize="15">
+                                <TextBlock.Text>
+                                    <MultiBinding  StringFormat="Гигабайты: {0} | Минуты: {1} | SMS: {2}">
+                                        <Binding Path="WPFGigabytes"/>
+                                        <Binding Path="WPFMinutes"/>
+                                        <Binding Path="WPFSMS"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
