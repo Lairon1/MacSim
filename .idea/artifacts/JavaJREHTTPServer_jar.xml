@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaJREHTTPServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaJREHTTPServer_jar</output-path>
+    <root id="archive" name="JavaJREHTTPServer.jar">
+      <element id="module-output" name="JavaJREHTTPServer" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/mysql-connector-java-8.0.28.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/JsonObjectSerializer.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
