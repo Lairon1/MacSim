@@ -1,7 +1,7 @@
 package com.macsim.http.server.handler.post;
 
 import com.macsim.http.server.databasecontroller.DataBaseController;
-import com.macsim.http.server.handler.HttpPrimitiveHandler;
+import com.macsim.http.server.handler.utils.HttpPrimitiveHandler;
 import com.macsim.http.server.obj.Client;
 import com.macsim.http.server.obj.ClientBuilder;
 import com.serializer.json.JSONException;
@@ -56,6 +56,7 @@ public class RegisterHandler extends HttpPrimitiveHandler {
             sendRequest(new JsonObjectSerializer().serializeObject(client), 200);
         } catch (JSONException e) {
             sendError("Invalid request json", 400);
+            e.printStackTrace();
         }
     }
 }

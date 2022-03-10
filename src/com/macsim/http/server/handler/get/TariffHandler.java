@@ -1,7 +1,7 @@
 package com.macsim.http.server.handler.get;
 
 import com.macsim.http.server.databasecontroller.DataBaseController;
-import com.macsim.http.server.handler.HttpPrimitiveHandler;
+import com.macsim.http.server.handler.utils.HttpPrimitiveHandler;
 import com.macsim.http.server.obj.Tariff;
 import com.serializer.json.JSONArray;
 import com.serializer.json.JSONException;

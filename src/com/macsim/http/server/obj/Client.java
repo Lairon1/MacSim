@@ -24,6 +24,17 @@ public class Client {
     private int sms;
     @JsonName("Balance")
     private int balance;
+    @JsonName("PhoneNumber")
+    private long phoneNumber;
+
+
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public int getId() {
         return id;

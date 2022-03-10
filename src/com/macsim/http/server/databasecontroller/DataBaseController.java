@@ -2,6 +2,7 @@ package com.macsim.http.server.databasecontroller;
 
 import com.macsim.http.server.obj.Client;
 import com.macsim.http.server.obj.Tariff;
+import com.macsim.http.server.utils.PhoneNumberGenerator;
 import com.serializer.json.JSONException;
 import com.serializer.parser.JsonObjectSerializer;
 
@@ -32,7 +33,6 @@ public class DataBaseController {
             try{
                 Connection connection = DriverManager.getConnection(url, username, password);
                 this.connection = connection;
-
                 logger.info("DataBase successfully connection.");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -44,6 +44,8 @@ public class DataBaseController {
     }
 
     public boolean userCanRegister(String login){
+        checkConnection();
+
         try(Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + login+ "';")){
             resultSet.next();
@@ -55,12 +57,16 @@ public class DataBaseController {
     }
 
     public void registerClient(Client client){
+        checkConnection();
         try(Statement statement = connection.createStatement()){
-            String sql = "INSERT INTO `Client`(`Login`,`Password`,`FirstName`,`LastName`)VALUES('{Login}', '{Password}', '{FirstName}', '{LastName}');";
+            String sql = "INSERT INTO `Client`(`Login`,`Password`,`FirstName`,`LastName`,`Phonenumber`)VALUES('{Login}', '{Password}', '{FirstName}', '{LastName}', '{PhoneNumber}');";
             sql = sql.replace("{Login}", client.getLogin());
             sql = sql.replace("{Password}", client.getPassword());
             sql = sql.replace("{FirstName}", client.getFirstname());
             sql = sql.replace("{LastName}", client.getLastname());
+            String generate = PhoneNumberGenerator.generate();
+            System.out.println(generate);
+            sql = sql.replace("{PhoneNumber}", generate);
             statement.executeUpdate(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -68,6 +74,7 @@ public class DataBaseController {
     }
 
     public Tariff getTariffByID(int id){
+        checkConnection();
         Tariff tariff = new Tariff();
         try(Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff WHERE ID =" + id)) {
@@ -89,6 +96,7 @@ public class DataBaseController {
     }
 
     public boolean TopUpBalance(Client client, int balance){
+        checkConnection();
         try{
             Statement statement = connection.createStatement();
             statement.executeUpdate("UPDATE `Client` SET `Balance` = " + (client.getBalance() + balance) +  " WHERE (`Login` = '" + client.getLogin() + "' AND `Password` = '" + client.getPassword() + "');");
@@ -99,6 +107,7 @@ public class DataBaseController {
     }
 
     public Client tryClientLogin(String username, String password){
+        checkConnection();
         try(Statement statement  = connection.createStatement();
                 ResultSet resultSet  = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + username + "';")) {
             while (resultSet.next()){
@@ -113,6 +122,7 @@ public class DataBaseController {
                 client.setGigabytes(resultSet.getInt(8));
                 client.setSms(resultSet.getInt(9));
                 client.setBalance(resultSet.getInt(10));
+                client.setPhoneNumber(resultSet.getLong(11));
                 statement.close();
                 client.setUsedTariff(getTariffByID(tariffID));
                 if(password.equals(client.getPassword())) return client;
@@ -127,6 +137,7 @@ public class DataBaseController {
     }
 
     public ArrayList<Tariff> getAllTariffs(){
+        checkConnection();
         ArrayList<Tariff> tariffs = new ArrayList<>();
         try(Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff;")) {
@@ -148,4 +159,11 @@ public class DataBaseController {
         return tariffs;
     }
 
+    private void checkConnection(){
+        try {
+            if(connection.isClosed()) init();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

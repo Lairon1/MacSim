@@ -1,4 +1,4 @@
-package com.macsim.http.server.handler;
+package com.macsim.http.server.handler.utils;
 
 import com.serializer.json.JSONException;
 import com.serializer.json.JSONObject;

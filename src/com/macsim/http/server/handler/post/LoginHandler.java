@@ -1,12 +1,11 @@
 package com.macsim.http.server.handler.post;
 
 import com.macsim.http.server.databasecontroller.DataBaseController;
-import com.macsim.http.server.handler.HttpPrimitiveHandler;
+import com.macsim.http.server.handler.utils.HttpPrimitiveHandler;
 import com.macsim.http.server.obj.Client;
 import com.serializer.json.JSONException;
 import com.serializer.json.JSONObject;
 import com.serializer.parser.JsonObjectSerializer;
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 
 
