@@ -9,12 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lairon.macsim.http.helper.PostHttpRequest;
 import com.lairon.macsim.http.utils.HttpServerULR;
+import com.lairon.macsim.obj.Client;
+import com.lairon.macsim.obj.ClientBuilder;
+import com.lairon.macsim.obj.Tariff;
 import com.lairon.macsim.utils.ActivityUtils;
+import com.lairon.macsim.utils.Globals;
+import com.lairon.macsim.utils.Parser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.lang.reflect.Parameter;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -72,7 +77,14 @@ public class LoginActivity extends AppCompatActivity {
                             ActivityUtils.sendError(error, this);
                             return;
                         }
-                        ActivityUtils.sendInfo("Вы успешно вошли в аккаунт!", this);
+                        JSONObject clientObject = result.getJSONObject("Client");
+                        Client client = Parser.parseJsonToClient(clientObject);
+                        Globals.setCurrentClient(client);
+
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         ActivityUtils.sendError("Неизвестная ошибка приложения.", this);
@@ -89,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(registerActivityInstance);
         });
     }
+
+
 
 
 }
