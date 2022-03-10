@@ -20,20 +20,25 @@ public class Parser {
                 .setGigabytes(clientObject.getInt("Gigabytes"))
                 .setSms(clientObject.getInt("SMS"))
                 .setBalance(clientObject.getInt("Balance"))
-                .setPhoneNumber(clientObject.getInt("PhoneNumber"))
+                .setPhoneNumber(clientObject.getLong("PhoneNumber"))
                 .build();
         if(!clientObject.isNull("UsedTariff")){
             JSONObject tariffObject = clientObject.getJSONObject("UsedTariff");
-            Tariff tariff = new Tariff();
-            tariff.setId(tariffObject.getInt("ID"));
-            tariff.setName(tariffObject.getString("Name"));
-            tariff.setPrice(tariffObject.getInt("Price"));
-            if(!tariffObject.isNull("Description")) tariff.setDescription(tariffObject.getString("Description"));
-            tariff.setMinutes(tariffObject.getInt("Minutes"));
-            tariff.setGigabytes(tariffObject.getInt("Gigabytes"));
-            tariff.setSms(tariffObject.getInt("SMS"));
+            parseJsonToTariff(tariffObject);
         }
         return client;
     }
+
+    private static void parseJsonToTariff(JSONObject tariffObject) throws JSONException {
+        Tariff tariff = new Tariff();
+        tariff.setId(tariffObject.getInt("ID"));
+        tariff.setName(tariffObject.getString("Name"));
+        tariff.setPrice(tariffObject.getInt("Price"));
+        if(!tariffObject.isNull("Description")) tariff.setDescription(tariffObject.getString("Description"));
+        tariff.setMinutes(tariffObject.getInt("Minutes"));
+        tariff.setGigabytes(tariffObject.getInt("Gigabytes"));
+        tariff.setSms(tariffObject.getInt("SMS"));
+    }
+
 
 }

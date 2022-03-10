@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                             ActivityUtils.sendError(error, this);
                             return;
                         }
-                        ActivityUtils.sendInfo("Вы успешно создали аккаунт!", this);
+                        this.finish();
                     } catch (Exception e) {
                         e.printStackTrace();
                         ActivityUtils.sendError("Неизвестная ошибка приложения.", this);

@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         initComponents();
 
 
-
     }
 
     private void initComponents(){
@@ -65,8 +64,9 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            JSONObject body = new JSONObject();
+
             try {
+                JSONObject body = new JSONObject();
                 body.put("Login", login);
                 body.put("Password", password);
                 new PostHttpRequest((request, code) -> {
@@ -80,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject clientObject = result.getJSONObject("Client");
                         Client client = Parser.parseJsonToClient(clientObject);
                         Globals.setCurrentClient(client);
+                        UserDataController userDataController = Globals.getUserDataController();
+                        userDataController.setProperty("Login", login);
+                        userDataController.setProperty("Password", password);
+                        userDataController.save();
 
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);

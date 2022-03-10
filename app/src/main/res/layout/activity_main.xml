@@ -50,7 +50,7 @@
                 android:id="@+id/FioTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Евсеев Вадим"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                 android:id="@+id/BalanceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30,1 р"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
                 android:id="@+id/PhoneNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+7 902 108 55 05"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
                     android:id="@+id/MinutesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="351"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -119,7 +119,7 @@
                     android:id="@+id/GigabytesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="28,32"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -140,7 +140,7 @@
                     android:id="@+id/SmsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="30dp" />
             </LinearLayout>
