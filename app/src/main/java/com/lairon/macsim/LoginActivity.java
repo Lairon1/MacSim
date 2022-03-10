@@ -1,5 +1,6 @@
 package com.lairon.macsim;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginText, passwordText;
     private Button loginButton, registerPageButton;
+    private LoginActivity instance = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 ActivityUtils.sendError("Неизвестная ошибка приложения.", this);
             }
         });
-        registerPageButton.setOnClickListener(v -> {
 
+        registerPageButton.setOnClickListener(v -> {
+            Intent registerActivityInstance = new Intent(instance, RegisterActivity.class);
+            startActivity(registerActivityInstance);
         });
     }
 
