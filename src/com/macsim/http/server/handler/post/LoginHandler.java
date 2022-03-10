@@ -6,6 +6,7 @@ import com.macsim.http.server.obj.Client;
 import com.serializer.json.JSONException;
 import com.serializer.json.JSONObject;
 import com.serializer.parser.JsonObjectSerializer;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 
 
@@ -30,10 +31,12 @@ public class LoginHandler extends HttpPrimitiveHandler {
             String password = requestJson.getString("Password");
             Client client = db.tryClientLogin(login, password);
             if (client == null) {
-                sendError("Wrong login or password", 401);
+                sendError("Неверный логин или пароль", 401);
                 return;
             }
             answer.put("Client", serializer.serializeObject(client));
+
+
             sendRequest(answer.toString(), 200);
         } catch (JSONException e) {
             sendError( "Invalid request json", 400);

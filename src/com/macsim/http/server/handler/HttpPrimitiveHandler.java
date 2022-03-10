@@ -2,6 +2,7 @@ package com.macsim.http.server.handler;
 
 import com.serializer.json.JSONException;
 import com.serializer.json.JSONObject;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -56,8 +57,8 @@ public abstract class HttpPrimitiveHandler implements HttpHandler {
             OutputStream outputStream = httpExchange.getResponseBody();
             JSONObject answer = new JSONObject();
             answer.put("ERROR", errorMessage);
-            httpExchange.sendResponseHeaders(code, answer.toString().length());
-            outputStream.write(answer.toString().getBytes());
+            httpExchange.sendResponseHeaders(code, answer.toString().getBytes(StandardCharsets.UTF_8).length);
+            outputStream.write(answer.toString().getBytes(StandardCharsets.UTF_8));
             httpExchange.close();
         } catch (IOException | JSONException e) {
             e.printStackTrace();

@@ -40,7 +40,7 @@ public class RegisterHandler extends HttpPrimitiveHandler {
             }
 
             if(!db.userCanRegister(login)){
-                sendError("This login already using", 401);
+                sendError("Этот логин уже используется!", 401);
                 return;
             }
 
