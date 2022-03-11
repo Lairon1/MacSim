@@ -164,3 +164,45 @@ C:\Users\User\Desktop\git\MacSim\MacSim-Decktop\MakSimDataBaseAdmin\obj\Debug\Ma
 C:\Users\User\Desktop\git\MacSim\MacSim-Decktop\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.csproj.CopyComplete
 C:\Users\User\Desktop\git\MacSim\MacSim-Decktop\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.exe
 C:\Users\User\Desktop\git\MacSim\MacSim-Decktop\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.pdb
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\MakSimDataBaseAdmin.exe.config
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\MakSimDataBaseAdmin.exe
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\MakSimDataBaseAdmin.pdb
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\MySqlConnector.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Buffers.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Memory.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\MySqlConnector.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Buffers.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Memory.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.csprojAssemblyReference.cache
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\ResourseDictionarys\TestBoxDictionary.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\chat\AllChatsWindow.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\LoginWindow.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\ProfileWindow.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\AddTariff.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\RedactTariffWindow.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\TariffWindow.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\App.g.cs
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin_MarkupCompile.cache
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin_MarkupCompile.lref
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\App.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\chat\AllChatsWindow.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\LoginWindow.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\ProfileWindow.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\AddTariff.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\RedactTariffWindow.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\src\com\maksim\wpf\tariff\TariffWindow.baml
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.g.resources
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.Properties.Resources.resources
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.csproj.GenerateResource.cache
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.csproj.CoreCompileInputs.cache
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.csproj.CopyComplete
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.exe
+C:\Users\Lairon\Desktop\Новая папка (2)\MakSimDataBaseAdmin\obj\Debug\MakSimDataBaseAdmin.pdb

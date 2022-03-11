@@ -59,7 +59,7 @@
                 <ComboBox
                     Height="40"
                     ItemsSource="{Binding SortTypes}"
-                    Style="{StaticResource ComboBoxFlatStyle}">
+                    >
                     
                 </ComboBox>
             </StackPanel>
