@@ -12,15 +12,48 @@
         WindowState="Maximized">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="349*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="163*"/>
             <ColumnDefinition Width="629*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel
+            Grid.Column="1"
+            Orientation="Horizontal">
+            <Border
+                Background="#27292D"
+                Width="1"/>
+            <StackPanel
+                Orientation="Vertical"
+                Margin="10 10 0 0"
+                Width="300">
+                <TextBlock
+                    Text="Поиск:"
+                    FontSize="15"
+                    Background="#383B40"
+                    Foreground="#fff"
+                    TextAlignment="Center"
+                    />
+                <TextBox 
+                Height="40"
+                FontSize="20"
+                x:Name="SerchBox"
+                Style="{StaticResource TextBoxBlack}"
+                KeyUp="SerchBox_KeyUp"
+                />
+            </StackPanel>
+        </StackPanel>
+        
+        
         <ListView
             Grid.Column="1"
-            ItemsSource="{Binding Tariffs}"
+            Grid.Row="1"
+            ItemsSource="{Binding SortedTariffs}"
             MouseDoubleClick="ListView_MouseDoubleClick"
-            x:Name="TariffListView" Style="{DynamicResource ListViewBlack}">
+            x:Name="TariffListView" Style="{DynamicResource ListViewBlack}" Grid.RowSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -64,7 +97,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel>
+        <StackPanel Grid.RowSpan="2" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
             <Button
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -126,17 +159,17 @@
             Height="50"
             Style="{DynamicResource ButtonBlack}"
             Click="Button_Add_Click"
-            ToolTip="Добавить тариф"
+            ToolTip="Добавить тариф" Grid.Row="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"
             />
         <TextBlock
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Text="?"
             FontSize="20"
-            Margin="13"
+            Margin="0,0,13,13"
             Background="#383B40"
             Foreground="#fff"
             ToolTip="Для редактирования тарифа нажмите по нему 2 раза ЛКМ" 
-            TextAlignment="Center"/>
+            TextAlignment="Center" Grid.Row="1" Height="27" Width="9" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin"/>
     </Grid>
 </Window>

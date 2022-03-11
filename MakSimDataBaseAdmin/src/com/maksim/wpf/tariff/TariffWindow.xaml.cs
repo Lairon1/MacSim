@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -18,7 +20,22 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public IEnumerable<Tariff> Tariffs { get; set; }
+        private List<Tariff> _SortedTariffs;
+
+        public List<Tariff> SortedTariffs 
+        {
+            get 
+            { 
+                return _SortedTariffs; 
+            }
+            set 
+            {
+                _SortedTariffs = value;
+                OnPropertyChanged("SortedTariffs");
+            } 
+        }
+        private List<Tariff> tariffs;
+
 
         public TariffWindow(IDataProvider provider)
         {
@@ -36,8 +53,8 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
 
         private async void LoadTariffs()
         {
-            Tariffs = await Provider.GetAllTarifs();
-            OnPropertyChanged("Tariffs");
+            tariffs = (List<Tariff>)await Provider.GetAllTarifs();
+            SortedTariffs = tariffs;
         }
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -58,6 +75,17 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
         {
             ProfileWindow profileWindow = new ProfileWindow(Globals.Staff);
             profileWindow.ShowDialog();
+        }
+
+        private void SerchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            string text = SerchBox.Text.ToUpper();
+            if (text.Length == 0)
+            {
+                SortedTariffs = tariffs;
+                return;
+            }
+            SortedTariffs = tariffs.Where(t => t.Name.ToUpper().Contains(text)).ToList();
         }
     }
 }
