@@ -22,6 +22,25 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
 
         private List<Tariff> _SortedTariffs;
 
+        public List<string> SortTypes 
+        { 
+            get
+            {
+                List<string> list = new List<string>();
+                list.Add("Не установлено");
+                list.Add("По возрастанию цены");
+                list.Add("По возрастанию гигабайт");
+                list.Add("По возрастанию минут");
+                list.Add("По возрастанию sms");
+
+                list.Add("По убыванию цены");              
+                list.Add("По убыванию гигабайт");
+                list.Add("По убыванию минут");
+                list.Add("По убыванию sms");
+                return list;
+            } 
+        }
+
         public List<Tariff> SortedTariffs 
         {
             get 
@@ -88,4 +107,6 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
             SortedTariffs = tariffs.Where(t => t.Name.ToUpper().Contains(text)).ToList();
         }
     }
+
+    //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
 }

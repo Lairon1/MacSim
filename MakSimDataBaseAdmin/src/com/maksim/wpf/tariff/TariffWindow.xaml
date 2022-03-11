@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MakSimDataBaseAdmin.src.com.maksim.wpf.tariff"
         mc:Ignorable="d"
-        Title="Тарифы" Height="450" Width="800"
+        Title="Тарифы" Height="712" Width="1214"
                 Icon="/src/assets/Мак-Sim_logo_nobackground.png"
         Background="#383B40"
         WindowStartupLocation="CenterScreen"
@@ -45,9 +45,27 @@
                 KeyUp="SerchBox_KeyUp"
                 />
             </StackPanel>
+            <StackPanel
+                 Orientation="Vertical"
+                Margin="10 10 0 0"
+                Width="300">
+                <TextBlock
+                    Text="Сортировка:"
+                    FontSize="15"
+                    Background="#383B40"
+                    Foreground="#fff"
+                    TextAlignment="Center"
+                    />
+                <ComboBox
+                    Height="40"
+                    ItemsSource="{Binding SortTypes}"
+                    Style="{StaticResource ComboBoxFlatStyle}">
+                    
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
-        
-        
+
+
         <ListView
             Grid.Column="1"
             Grid.Row="1"
