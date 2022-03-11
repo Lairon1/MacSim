@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MakSimDataBaseAdmin.src.com.maksim.wpf.tariff"
         mc:Ignorable="d"
-        Title="Слздать тариф" 
+        Title="Создать тариф" 
                 Height="394.693" Width="420.905"
         MaxHeight="450" MaxWidth="420.905"
                         Icon="/src/assets/Мак-Sim_logo_nobackground.png"
