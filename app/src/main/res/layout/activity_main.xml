@@ -19,6 +19,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:src="@drawable/reload_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitCenter"
+        android:id="@+id/ReloadButton"/>
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -157,13 +167,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground"
+            android:id="@+id/TopUpBalanceButton">
 
-            <ImageButton
-                android:id="@+id/TopUpBalanceButton"
+            <ImageView
+                android:id="@+id/TopUpBalanceImage"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:background="?android:selectableItemBackground"
                 android:scaleType="fitCenter"
                 android:src="@drawable/balance_icon"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -173,22 +184,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Пополнить баланс"
+                android:text="Пополнить\nбаланс"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TopUpBalanceButton" />
+                app:layout_constraintTop_toBottomOf="@+id/TopUpBalanceImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="50dp">
-
-            <ImageButton
-                android:id="@+id/TariffButton"
+            android:layout_marginStart="50dp"
+            android:background="?android:selectableItemBackground"
+            android:id="@+id/TariffsButton">
+            <ImageView
+                android:id="@+id/TariffImage"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="?android:selectableItemBackground"
                 android:scaleType="fitCenter"
                 android:src="@drawable/sim_icon"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +214,7 @@
                 android:text="Трифы"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TariffButton"
+                app:layout_constraintTop_toBottomOf="@+id/TariffImage"
                 android:layout_marginTop="13dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

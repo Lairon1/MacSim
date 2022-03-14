@@ -12,6 +12,7 @@ import com.lairon.macsim.http.utils.HttpServerULR;
 import com.lairon.macsim.obj.Client;
 import com.lairon.macsim.obj.ClientBuilder;
 import com.lairon.macsim.obj.Tariff;
+import com.lairon.macsim.servlet.api.MacSimWepApi;
 import com.lairon.macsim.utils.ActivityUtils;
 import com.lairon.macsim.utils.Globals;
 import com.lairon.macsim.utils.Parser;
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void initComponents(){
+    private void initComponents() {
         //EditText
         loginText = findViewById(R.id.LoginEditText);
         passwordText = findViewById(R.id.PasswordEditText);
@@ -49,55 +50,19 @@ public class LoginActivity extends AppCompatActivity {
         setButtonsListeners();
     }
 
-    private void setButtonsListeners(){
+    private void setButtonsListeners() {
         loginButton.setOnClickListener(v -> {
             String login = loginText.getText().toString();
             String password = passwordText.getText().toString();
 
-            if(!login.matches("[A-Za-z]([.A-Za-z0-9-]{1,18})([A-Za-z0-9])")){
-                ActivityUtils.sendError("Невалидный логин!\nЛогин должен быть не короче 3х символов и состоять только из латинских символов.", this);
-                return;
+
+            try{
+                MacSimWepApi wepApi = new MacSimWepApi();
+                wepApi.loginUser(login, password, this::callBackLogin);
+            }catch (Exception e){
+                ActivityUtils.sendError(e.getMessage(), this);
             }
 
-            if(!password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}")){
-                ActivityUtils.sendError("Слишком легкий пароль!\nПароль должен быть не короче 8ми символов, в пароле дожна быть хотябы 1 большая буква и хотябы 1 цыфра.", this);
-                return;
-            }
-
-
-            try {
-                JSONObject body = new JSONObject();
-                body.put("Login", login);
-                body.put("Password", password);
-                new PostHttpRequest((request, code) -> {
-                    try {
-                        JSONObject result = new JSONObject(request);
-                        if(code != 200){
-                            String error = result.getString("ERROR");
-                            ActivityUtils.sendError(error, this);
-                            return;
-                        }
-                        JSONObject clientObject = result.getJSONObject("Client");
-                        Client client = Parser.parseJsonToClient(clientObject);
-                        Globals.setCurrentClient(client);
-                        UserDataController userDataController = Globals.getUserDataController();
-                        userDataController.setProperty("Login", login);
-                        userDataController.setProperty("Password", password);
-                        userDataController.save();
-
-                        Intent intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        ActivityUtils.sendError("Неизвестная ошибка приложения.", this);
-                    }
-                }).execute(HttpServerULR.LOGIN, body.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-                ActivityUtils.sendError("Неизвестная ошибка приложения.", this);
-            }
         });
 
         registerPageButton.setOnClickListener(v -> {
@@ -106,7 +71,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void callBackLogin(Client client) {
+        if (client == null) {
+            ActivityUtils.sendError("Неправильный логин или пароль", this);
+            return;
+        }
+        Globals.setCurrentClient(client);
+        UserDataController userDataController = Globals.getUserDataController();
+        userDataController.setProperty("Login", client.getLogin());
+        userDataController.setProperty("Password", client.getPassword());
+        userDataController.save();
 
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
 
 
 }
