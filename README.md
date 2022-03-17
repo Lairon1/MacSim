@@ -14,26 +14,26 @@
 После регистрации/авторизации пользователь может посмотреть свои минуты, гигабайты, sms, номер телефона, баланс.
 Также пользователь может перейти на вкладки "Пополнить баланс", "Тарифы", "Мой тариф", просмотреть свой профиль.
 
-![MainScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/MainScreen.png?raw=true)
+![MainScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/MainScreen.jpg?raw=true)
 
 ## Пополнение баланса
 Перейдя по вкладке "Пополнить баланс" вас перенесет на форму с пополнением баланса, на которой нужно заполнить сумму и нажать "Пополнить", после загрузки баланс будет пополнен.
 
-![TopUpBalanceScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TopUpBalanceScreen.png?raw=true)
+![TopUpBalanceScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TopUpBalanceScreen.jpg?raw=true)
 
 ## Тарифы 
 Перейдя по вкладке "Тарифы" вас перенесет на форму где отображаются все тарифы.
 У каждого тарифа можно посмотреть Название, описание, цену, количество минут, sms и гигабайт.
 Также на каждом из тарифов есть кнопка "подключить" нажав которую пользователь может подключить тариф.
 
-![TariffsScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TariffsScreen.png?raw=true)
+![TariffsScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TariffsScreen.jpg?raw=true)
 
 ## Мой тариф
 Перейдя по вкладке "Мой тариф" вас перенесет на форму где отображается информация о вашем тарифе.
 
-![MyTariffScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/MyTariffScreen.png?raw=true)
+![MyTariffScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/MyTariffScreen.jpg?raw=true)
 
 ## Профиль
 Нажав кнопку в верхнем левом углу пользователь может посмотреть свои данные и сменить пароль.
 
-![ProfileScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/ProfileScreen.png?raw=true)
+![ProfileScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/ProfileScreen.jpg?raw=true)
