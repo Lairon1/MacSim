@@ -1,13 +1,21 @@
 package com.lairon.macsim.servlet.api;
 
 import com.lairon.macsim.http.callback.ClientCallBack;
+import com.lairon.macsim.http.callback.HttpCallBack;
+import com.lairon.macsim.http.callback.TariffsCallBack;
+import com.lairon.macsim.http.helper.GetHttpRequest;
 import com.lairon.macsim.http.helper.PostHttpRequest;
 import com.lairon.macsim.http.utils.HttpServerULR;
 import com.lairon.macsim.obj.Client;
+import com.lairon.macsim.obj.Tariff;
 import com.lairon.macsim.utils.Parser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MacSimWepApi {
 
@@ -45,6 +53,28 @@ public class MacSimWepApi {
             e.printStackTrace();
         }
 
+    }
+
+    public void getAllTariffs(TariffsCallBack tariffsCallBack){
+        new GetHttpRequest((request, code) -> {
+            if(code != 200) {
+                tariffsCallBack.onCallBack(null);
+                return;
+            }
+            try {
+                JSONArray tariffs = new JSONObject(request).getJSONArray("Tariffs");
+                List<Tariff> tariffList = new ArrayList<>();
+                for (int i = 0; i < tariffs.length(); i++) {
+                    JSONObject tariffObject = tariffs.getJSONObject(i);
+                    Tariff tariff = Parser.parseJsonToTariff(tariffObject);
+                    tariffList.add(tariff);
+                }
+                tariffsCallBack.onCallBack(tariffList);
+            } catch (JSONException e) {
+                tariffsCallBack.onCallBack(null);
+                return;
+            }
+        }).execute(HttpServerULR.TARIFF);
     }
 
     public void topUpBalance(Client client, int countRubs, ClientCallBack callBack) {

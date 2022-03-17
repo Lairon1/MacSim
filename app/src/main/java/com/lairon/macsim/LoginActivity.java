@@ -7,20 +7,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lairon.macsim.http.helper.PostHttpRequest;
-import com.lairon.macsim.http.utils.HttpServerULR;
 import com.lairon.macsim.obj.Client;
-import com.lairon.macsim.obj.ClientBuilder;
-import com.lairon.macsim.obj.Tariff;
 import com.lairon.macsim.servlet.api.MacSimWepApi;
 import com.lairon.macsim.utils.ActivityUtils;
 import com.lairon.macsim.utils.Globals;
-import com.lairon.macsim.utils.Parser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Parameter;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_logia);
+        setContentView(R.layout.activity_login);
 
         initComponents();
 

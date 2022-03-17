@@ -1,13 +1,12 @@
 package com.lairon.macsim;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.lairon.macsim.obj.Client;
 import com.lairon.macsim.servlet.api.MacSimWepApi;
@@ -63,7 +62,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(instance, TopUpBalanceActivity.class);
             instance.startActivity(intent);
         });
-        reloadButton.setOnClickListener(v -> new MacSimWepApi().loginUser(currentClient.getLogin(), currentClient.getPassword(), this::setClient));
+        reloadButton.setOnClickListener(v -> {
+
+            new MacSimWepApi().loginUser(currentClient.getLogin(), currentClient.getPassword(), this::setClient);
+
+        });
+        tariffsButton.setOnClickListener(v -> startActivity(new Intent(instance, TariffsActivity.class)));
     }
 
     private void setClient(Client client){

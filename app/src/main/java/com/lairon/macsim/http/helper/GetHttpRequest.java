@@ -37,7 +37,8 @@ public class GetHttpRequest extends AsyncTask<String, String, String> {
 
             code = connection.getResponseCode();
 
-            return result.toString();
+            request = result.toString();
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -46,7 +47,7 @@ public class GetHttpRequest extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        callBack.onCallBack(s, code);
+        callBack.onCallBack(request, code);
         super.onPostExecute(s);
     }
 }

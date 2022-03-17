@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TopUpBalanceActivity"
-    >
-
+    tools:context=".TariffsActivity">
     <TextView
         android:id="@+id/PageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Пополнение баланса"
+        android:text="Выбор тарифа"
         android:textColor="@color/base"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,41 +26,14 @@
         app:layout_constraintTop_toBottomOf="@+id/PageName"
         tools:layout_editor_absoluteX="10dp" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        android:orientation="vertical">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/edittext_corner_white"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:paddingStart="10dp"
-            android:hint="Сумма пополнения"
-            android:textColorHint="@color/base"
-            android:id="@+id/TopUpBalanceCountText"
-            android:inputType="number"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:text="Пополнить"
-            android:id="@+id/TopUpButton"
-            android:backgroundTint="@color/overlay_dark"
-            />
-
-    </LinearLayout>
-
+        android:id="@+id/TariffsRecyclerView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

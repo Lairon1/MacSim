@@ -29,7 +29,7 @@ public class Parser {
         return client;
     }
 
-    private static void parseJsonToTariff(JSONObject tariffObject) throws JSONException {
+    public static Tariff parseJsonToTariff(JSONObject tariffObject) throws JSONException {
         Tariff tariff = new Tariff();
         tariff.setId(tariffObject.getInt("ID"));
         tariff.setName(tariffObject.getString("Name"));
@@ -38,6 +38,7 @@ public class Parser {
         tariff.setMinutes(tariffObject.getInt("Minutes"));
         tariff.setGigabytes(tariffObject.getInt("Gigabytes"));
         tariff.setSms(tariffObject.getInt("SMS"));
+        return tariff;
     }
 
 

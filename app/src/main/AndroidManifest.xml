@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MacSim">
         <activity
+            android:name=".TariffsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TopUpBalanceActivity"
             android:exported="false" />
         <activity
