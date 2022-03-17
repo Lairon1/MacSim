@@ -11,6 +11,6 @@ namespace MakSimDataBaseAdmin.src.com.maksim.globals
     public class Globals
     {
         public static Staff Staff{ get; set; }
-        public static UserConfig UserConfig { get; set; }
+        public static Configuration UserConfig { get; set; }
     }
 }

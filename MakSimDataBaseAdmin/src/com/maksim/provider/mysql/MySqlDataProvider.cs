@@ -27,33 +27,7 @@ namespace MakSimDataBaseAdmin.src.com.maksim.provider.mysql
                 + ";port=" + port + ";User Id=" + username + ";password=" + password;
             conn = new MySqlConnection(connString);
             
-        }
-
-        public async Task<IEnumerable<Chat>> GetAllChats()
-        {
-
-            IEnumerable<Client> clients;
-
-
-            conn.Open();
-            List<Chat> chats = new List<Chat>();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Chat");
-            MySqlDataReader chatReader = await cmd.ExecuteReaderAsync();
-
-            while (chatReader.Read())
-            {
-                Chat chat = new Chat();
-                chat.ID = chatReader.GetInt32(0);
-
-
-
-            }
-
-            return chats;
-        }
-
-
-        
+        } 
 
 
         public async Task<bool> AddTarif(Tariff tariff)
@@ -80,7 +54,6 @@ namespace MakSimDataBaseAdmin.src.com.maksim.provider.mysql
             List<Tariff> tariffs = new List<Tariff>();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM Tariff;", conn);
             MySqlDataReader reader = await cmd.ExecuteReaderAsync();
-
             while (reader.Read())
             {
                 Tariff tariff = new Tariff();
@@ -120,14 +93,12 @@ namespace MakSimDataBaseAdmin.src.com.maksim.provider.mysql
             staff.Passport = reader.GetInt32(7);
             staff.Salary = reader.GetDouble(8);
             staff.Date = reader.GetDateTime(9);
-
             if (staff.Login == login && staff.Password == password)
             {
                 conn.Close();
                 return staff;
             }
             conn.Close();
-            
             return null;
         }
 

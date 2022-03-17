@@ -79,7 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="src\com\maksim\obj\Chat.cs" />
     <Compile Include="src\com\maksim\obj\Client.cs" />
     <Compile Include="src\com\maksim\obj\Tariff.cs" />
     <Compile Include="src\com\maksim\wpf\chat\AllChatsWindow.xaml.cs">
@@ -113,8 +112,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\com\maksim\config\IConfig.cs" />
-    <Compile Include="src\com\maksim\config\UserConfig.cs" />
+    <Compile Include="src\com\maksim\config\Configuration.cs" />
     <Compile Include="src\com\maksim\utils\Globals.cs" />
     <Compile Include="src\com\maksim\provider\IDataProvider.cs" />
     <Compile Include="src\com\maksim\provider\mysql\MySqlDataProvider.cs" />

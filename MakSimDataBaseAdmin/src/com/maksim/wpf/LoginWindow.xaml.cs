@@ -31,7 +31,7 @@ namespace MakSimDataBaseAdmin
     public partial class LoginWindow : Window, INotifyPropertyChanged
     {
         private IDataProvider provider = new MySqlDataProvider();
-        private UserConfig userConfig = new UserConfig();
+        private Configuration userConfig = new Configuration();
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Visibility ErrorState { get; set; }
