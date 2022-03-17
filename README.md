@@ -1,8 +1,26 @@
+
 # Mobile app
 Для курсового проекта было разработано клиентское приложение для смартфонов на android.
+
+# Содержание
+
+1. SplashScreen
+2. Авторизация и регистрация
+3. Главное окно
+4. [Пополнение баланса](https://github.com/Lairon1/MacSim/blob/Mobile/README.md#%D0%BF%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B0)
+5. [Тарифы](https://github.com/Lairon1/MacSim/blob/Mobile/README.md#%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B) 
+6. [Мой тариф](https://github.com/Lairon1/MacSim/blob/Mobile/README.md#%D0%BC%D0%BE%D0%B9-%D1%82%D0%B0%D1%80%D0%B8%D1%84)
+7. [Профиль](https://github.com/Lairon1/MacSim/blob/Mobile/README.md#%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C)
+ 
+
+
+## SplashScreen
+
 При открытии приложения клиенту будет показан splash screen.
 
 ![SplashScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/SplashScreen.jpg?raw=true)
+
+## Авторизация и регистрация
 
 Далее для пользователя откроется форма авторизации из которой можно перейти на форму регистрации или в настройки.
 
@@ -11,6 +29,9 @@
 ![RegisretScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/RegisterScreen.png?raw=true)
 
 В настройках есть всего 1 пункт. Это изменение стандартного IP адреса сервера. Эта функция предназначена для разработчиков. Чтобы если сервер развернут на другом адресе его можно было поменять.
+
+## Главное окно
+
 После регистрации/авторизации пользователь может посмотреть свои минуты, гигабайты, sms, номер телефона, баланс.
 Также пользователь может перейти на вкладки "Пополнить баланс", "Тарифы", "Мой тариф", просмотреть свой профиль.
 
