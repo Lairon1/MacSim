@@ -19,7 +19,7 @@
 ## Пополнение баланса
 Перейдя по вкладке "Пополнить баланс" вас перенесет на форму с пополнением баланса, на которой нужно заполнить сумму и нажать "Пополнить", после загрузки баланс будет пополнен.
 
-![TopUpBalanceScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TopUpBalanceScreen.jpg?raw=true)
+![TopUpBalanceScreen](https://github.com/Lairon1/MacSim/blob/Mobile/Images/TopUpBalanceScreen.png?raw=true)
 
 ## Тарифы 
 Перейдя по вкладке "Тарифы" вас перенесет на форму где отображаются все тарифы.
