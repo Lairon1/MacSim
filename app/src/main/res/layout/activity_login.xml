@@ -78,4 +78,15 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/settings_icon"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        android:layout_margin="10dp"
+        android:id="@+id/SettingsButton"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

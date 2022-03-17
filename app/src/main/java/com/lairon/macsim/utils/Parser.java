@@ -24,7 +24,7 @@ public class Parser {
                 .build();
         if(!clientObject.isNull("UsedTariff")){
             JSONObject tariffObject = clientObject.getJSONObject("UsedTariff");
-            parseJsonToTariff(tariffObject);
+            client.setUsedTariff(parseJsonToTariff(tariffObject));
         }
         return client;
     }

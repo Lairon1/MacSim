@@ -1,6 +1,11 @@
 package com.lairon.macsim.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lairon.macsim.R;
+import com.lairon.macsim.obj.Client;
 import com.lairon.macsim.obj.Tariff;
+import com.lairon.macsim.servlet.api.MacSimWepApi;
+import com.lairon.macsim.utils.ActivityUtils;
+import com.lairon.macsim.utils.Globals;
 
 import java.util.List;
 
-public class TariffAdapter extends RecyclerView.Adapter<TariffAdapter.TariffHolder>{
+public class TariffAdapter extends RecyclerView.Adapter<TariffAdapter.TariffHolder> {
 
     private final LayoutInflater inflater;
     private final List<Tariff> tariffs;
@@ -42,22 +51,22 @@ public class TariffAdapter extends RecyclerView.Adapter<TariffAdapter.TariffHold
         return tariffs.size();
     }
 
-    public class TariffHolder extends RecyclerView.ViewHolder{
+    public class TariffHolder extends RecyclerView.ViewHolder {
 
         private TextView tariffNameText, gigabytesText, smsText, minutesText, descriptionText, priceText;
         private Button connectButton;
         private Tariff tariff;
 
-
-        public TariffHolder(@NonNull View itemView) {
-            super(itemView);
-            tariffNameText = itemView.findViewById(R.id.TariffNameText);
-            smsText = itemView.findViewById(R.id.SMSText);
-            gigabytesText = itemView.findViewById(R.id.GigabytesText);
-            minutesText = itemView.findViewById(R.id.MinutesText);
-            descriptionText = itemView.findViewById(R.id.DescriptionText);
-            priceText = itemView.findViewById(R.id.PriceText);
-            connectButton = itemView.findViewById(R.id.ConnectButton);
+        public TariffHolder(@NonNull View view) {
+            super(view);
+            tariffNameText = view.findViewById(R.id.TariffNameText);
+            smsText = view.findViewById(R.id.SMSText);
+            gigabytesText = view.findViewById(R.id.GigabytesText);
+            minutesText = view.findViewById(R.id.MinutesText);
+            descriptionText = view.findViewById(R.id.DescriptionText);
+            priceText = view.findViewById(R.id.PriceText);
+            connectButton = view.findViewById(R.id.ConnectButton);
+            connectButton.setOnClickListener(this::connectButtonClick);
         }
 
         public void setTariff(Tariff tariff) {
@@ -70,6 +79,50 @@ public class TariffAdapter extends RecyclerView.Adapter<TariffAdapter.TariffHold
 
             descriptionText.setText(tariff.getDescription());
             priceText.setText(String.valueOf(((int) tariff.getPrice())));
+        }
+
+        @SuppressLint("StaticFieldLeak")
+        public void connectButtonClick(View view) {
+
+            new AlertDialog.Builder(view.getContext())
+                    .setTitle("Вы действительно хотите преобрести тарифф \"" + tariff.getName() + "\"")
+                    .setNegativeButton("Отмена", (dialog, which) -> { })
+                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Dialog loadingDialog = ActivityUtils.startLoadingDialog(view.getContext());
+
+                            MacSimWepApi wepApi = new MacSimWepApi();
+                            new AsyncTask<Void, Void, Client>() {
+
+                                private Exception exception;
+
+                                @Override
+                                protected Client doInBackground(Void... voids) {
+                                    try {
+                                        return wepApi.hookUpTariff(Globals.getCurrentClient(), tariff);
+                                    } catch (Exception e) {
+                                        exception = e;
+                                    }
+                                    return null;
+                                }
+
+                                @Override
+                                protected void onPostExecute(Client client) {
+                                    if (client == null) {
+                                        loadingDialog.hide();
+                                        ActivityUtils.sendError(exception.getMessage(), view.getContext());
+                                        return;
+                                    }
+                                    Globals.setCurrentClient(client);
+                                    loadingDialog.hide();
+                                    ActivityUtils.sendInfo("Тариф успешно подключен!", view.getContext());
+
+                                    super.onPostExecute(client);
+                                }
+                            }.execute();
+                        }
+                    }).create().show();
         }
     }
 }

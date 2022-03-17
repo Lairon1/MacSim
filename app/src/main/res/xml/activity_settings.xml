@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="address"
+        android:summary="Этот IP аддрес будет использоватся для получения данных с сервера (Предназначено для разработчиков, менять только если вы уверены в своих действиях)"
+        android:defaultValue="http://192.168.0.10/"
+        android:title="IP address"
+        >
+
+    </EditTextPreference>
+</PreferenceScreen>

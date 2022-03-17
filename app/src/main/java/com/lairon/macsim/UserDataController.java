@@ -18,11 +18,11 @@ public class UserDataController extends Properties {
     public UserDataController(Activity activity) {
         this.activity = activity;
         try {
+
             FileInputStream fileInputStream = activity.openFileInput(DATA_FILE_PATH);
             loadFromXML(fileInputStream);
             fileInputStream.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,21 +1,18 @@
 package com.lairon.macsim;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.lairon.macsim.http.helper.PostHttpRequest;
-import com.lairon.macsim.http.utils.HttpServerULR;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lairon.macsim.obj.Client;
 import com.lairon.macsim.servlet.api.MacSimWepApi;
 import com.lairon.macsim.utils.ActivityUtils;
 import com.lairon.macsim.utils.Globals;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -41,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         setButtonsListeners();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void setButtonsListeners() {
         loginPageButton.setOnClickListener(v -> {
             instance.finish();
@@ -51,19 +49,38 @@ public class RegisterActivity extends AppCompatActivity {
             String firstname = firstnameText.getText().toString();
             String lastname = lastnameText.getText().toString();
             MacSimWepApi wepApi = new MacSimWepApi();
-            try {
-                wepApi.registerUser(login, password, firstname, lastname, this::callBackLogin);
-            }catch (Exception e){
-                ActivityUtils.sendError(e.getMessage(), this);
-            }
+
+
+            new AsyncTask<Void, Void, Client>(){
+
+                private Exception exception;
+
+                @Override
+                protected Client doInBackground(Void... voids) {
+                    try {
+                        return wepApi.registerUser(login, password, firstname, lastname);
+                    } catch (Exception e) {
+                        exception = e;
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Client client) {
+                    if(client == null){
+                        ActivityUtils.sendError(exception.getMessage(), instance);
+                        return;
+                    }
+                    loginUser(client);
+                    super.onPostExecute(client);
+                }
+            }.execute();
+
         });
     }
 
-    private void callBackLogin(Client client) {
-        if (client == null) {
-            ActivityUtils.sendError("Ошибка сервера.", this);
-            return;
-        }
+    private void loginUser(Client client) {
+
         Globals.setCurrentClient(client);
         UserDataController userDataController = Globals.getUserDataController();
         userDataController.setProperty("Login", client.getLogin());
