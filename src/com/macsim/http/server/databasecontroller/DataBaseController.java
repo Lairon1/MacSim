@@ -3,8 +3,6 @@ package com.macsim.http.server.databasecontroller;
 import com.macsim.http.server.obj.Client;
 import com.macsim.http.server.obj.Tariff;
 import com.macsim.http.server.utils.PhoneNumberGenerator;
-import com.serializer.json.JSONException;
-import com.serializer.parser.JsonObjectSerializer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,28 +10,24 @@ import java.util.logging.Logger;
 
 public class DataBaseController {
 
-    private DataBaseController(){ }
 
-    private static DataBaseController instance = new DataBaseController().init();
-
-    public static DataBaseController getInstance() {
-        return instance;
+    public DataBaseController() {
+        init();
     }
 
     private Connection connection;
 
     private Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
-    private DataBaseController init(){
+    public DataBaseController init() {
         String url = "jdbc:mysql://kolei.ru/evseev2";
         String username = "evseev2";
         String password = "123456";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try{
+            try {
                 Connection connection = DriverManager.getConnection(url, username, password);
                 this.connection = connection;
-                logger.info("DataBase successfully connection.");
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -43,11 +37,12 @@ public class DataBaseController {
         return this;
     }
 
-    public boolean userCanRegister(String login){
-        checkConnection();
 
-        try(Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + login+ "';")){
+    public boolean userCanRegister(String login) {
+        init();
+
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + login + "';")) {
             resultSet.next();
             return resultSet.getRow() == 0;
         } catch (SQLException throwables) {
@@ -56,9 +51,9 @@ public class DataBaseController {
         }
     }
 
-    public void registerClient(Client client){
-        checkConnection();
-        try(Statement statement = connection.createStatement()){
+    public void registerClient(Client client) {
+        init();
+        try (Statement statement = connection.createStatement()) {
             String sql = "INSERT INTO `Client`(`Login`,`Password`,`FirstName`,`LastName`,`Phonenumber`)VALUES('{Login}', '{Password}', '{FirstName}', '{LastName}', '{PhoneNumber}');";
             sql = sql.replace("{Login}", client.getLogin());
             sql = sql.replace("{Password}", client.getPassword());
@@ -73,13 +68,13 @@ public class DataBaseController {
         }
     }
 
-    public Tariff getTariffByID(int id){
-        checkConnection();
+    public Tariff getTariffByID(int id) {
+        init();
         Tariff tariff = new Tariff();
-        try(Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff WHERE ID =" + id)) {
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff WHERE ID =" + id)) {
             resultSet.next();
-            if(resultSet.getRow() == 0) return null;
+            if (resultSet.getRow() == 0) return null;
 
             tariff.setId(resultSet.getInt(1));
             tariff.setName(resultSet.getString(2));
@@ -95,22 +90,48 @@ public class DataBaseController {
         return tariff;
     }
 
-    public boolean TopUpBalance(Client client, int balance){
-        checkConnection();
-        try{
+
+    public boolean updateClient(Client client) {
+        init();
+        try {
+            String sql = "UPDATE `evseev2`.`Client`" +
+                    "SET" +
+                    "`Login` = \"{Login}\"," +
+                    "`Password` = \"{Password}\"," +
+                    "`FirstName` = \"{FirstName}\"," +
+                    "`LastName` = \"{LastName}\"," +
+                    "`UsedTariffID` = {UsedTariffID}," +
+                    "`Minutes` = {Minutes}," +
+                    "`Gigabytes` = {Gigabytes}," +
+                    "`SMS` = {SMS}," +
+                    "`Balance` = {Balance},\n" +
+                    "`Phonenumber` = {Phonenumber}\n" +
+                    "WHERE `ID` = {expr};\n";
+            sql = sql.replace("{Login}", client.getLogin());
+            sql = sql.replace("{Password}", client.getPassword());
+            sql = sql.replace("{FirstName}", client.getFirstname());
+            sql = sql.replace("{LastName}", client.getLastname());
+            sql = sql.replace("{UsedTariffID}", client.getUsedTariff() == null ? "NULL" : client.getUsedTariff().getId() + "");
+            sql = sql.replace("{Minutes}", client.getMinutes() + "");
+            sql = sql.replace("{Gigabytes}", client.getGigabytes() + "");
+            sql = sql.replace("{SMS}", client.getSms() + "");
+            sql = sql.replace("{Balance}", client.getBalance()  + "");
+            sql = sql.replace("{Phonenumber}", client.getPhoneNumber() + "");
+            sql =sql.replace("{expr}", client.getId() + "");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("UPDATE `Client` SET `Balance` = " + (client.getBalance() + balance) +  " WHERE (`Login` = '" + client.getLogin() + "' AND `Password` = '" + client.getPassword() + "');");
+            statement.executeUpdate(sql);
             return true;
         } catch (SQLException throwables) {
-            return false;
+            throwables.printStackTrace();
         }
+        return false;
     }
 
-    public Client tryClientLogin(String username, String password){
-        checkConnection();
-        try(Statement statement  = connection.createStatement();
-                ResultSet resultSet  = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + username + "';")) {
-            while (resultSet.next()){
+    public Client tryClientLogin(String username, String password) {
+        init();
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM Client WHERE Login = '" + username + "';")) {
+            while (resultSet.next()) {
                 Client client = new Client();
                 client.setId(resultSet.getInt(1));
                 client.setLogin(resultSet.getString(2));
@@ -125,7 +146,7 @@ public class DataBaseController {
                 client.setPhoneNumber(resultSet.getLong(11));
                 statement.close();
                 client.setUsedTariff(getTariffByID(tariffID));
-                if(password.equals(client.getPassword())) return client;
+                if (password.equals(client.getPassword())) return client;
                 return null;
             }
         } catch (SQLException throwables) {
@@ -136,12 +157,12 @@ public class DataBaseController {
         return null;
     }
 
-    public ArrayList<Tariff> getAllTariffs(){
-        checkConnection();
+    public ArrayList<Tariff> getAllTariffs() {
+        init();
         ArrayList<Tariff> tariffs = new ArrayList<>();
-        try(Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff;")) {
-            while (resultSet.next()){
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM Tariff;")) {
+            while (resultSet.next()) {
                 Tariff tariff = new Tariff();
                 tariff.setId(resultSet.getInt(1));
                 tariff.setName(resultSet.getString(2));
@@ -157,13 +178,5 @@ public class DataBaseController {
             throwables.printStackTrace();
         }
         return tariffs;
-    }
-
-    private void checkConnection(){
-        try {
-            if(connection.isClosed()) init();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
     }
 }

@@ -3,9 +3,7 @@ package com.macsim.http.server;
 import com.macsim.http.server.databasecontroller.DataBaseController;
 import com.macsim.http.server.handler.get.ServerConnectionHandler;
 import com.macsim.http.server.handler.get.TariffHandler;
-import com.macsim.http.server.handler.post.LoginHandler;
-import com.macsim.http.server.handler.post.RegisterHandler;
-import com.macsim.http.server.handler.post.TopUpBalanceHandler;
+import com.macsim.http.server.handler.post.*;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -20,7 +18,6 @@ public class Server {
     private HttpServer server;
 
     public void start(int port){
-        DataBaseController.getInstance();
         try {
             server = HttpServer.create(new InetSocketAddress(port), 1);
             server.setExecutor(Executors.newSingleThreadExecutor());
@@ -38,6 +35,8 @@ public class Server {
         addHttpHandler("/register", new RegisterHandler());
         addHttpHandler("/server", new ServerConnectionHandler());
         addHttpHandler("/topUpBalance", new TopUpBalanceHandler());
+        addHttpHandler("/hookUpTariff", new HookUpTariff());
+        addHttpHandler("/changePassword", new ChangePasswordHandler());
     }
 
     public void addHttpHandler(String path, HttpHandler httpHandler){

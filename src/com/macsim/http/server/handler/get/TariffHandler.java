@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class TariffHandler extends HttpPrimitiveHandler {
 
-    private DataBaseController db = DataBaseController.getInstance();
+    private DataBaseController db = new DataBaseController();
     private JsonObjectSerializer serializer = new JsonObjectSerializer();
 
     @Override
@@ -26,7 +26,7 @@ public class TariffHandler extends HttpPrimitiveHandler {
         try {
             answer.put("Tariffs", tariffsJsonArray);
         } catch (JSONException e) {
-            sendError( "Server error", 500);
+            sendError( "Серверная ошибка", 500);
             return;
         }
         sendRequest(answer.toString(), 200);

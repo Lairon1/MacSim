@@ -11,13 +11,13 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class RegisterHandler extends HttpPrimitiveHandler {
 
-    private DataBaseController db = DataBaseController.getInstance();
+    private DataBaseController db = new DataBaseController();
 
     @Override
     public void postHandle() {
         HttpExchange exchange = getHttpExchange();
         if (!exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            sendError("Use POST request method", 405);
+            sendError("Используйте POST запрос", 405);
             return;
         }
 
@@ -30,12 +30,12 @@ public class RegisterHandler extends HttpPrimitiveHandler {
             String lastname = post.getString("Lastname");
 
             if(!login.matches("[A-Za-z]([.A-Za-z0-9-]{1,18})([A-Za-z0-9])")){
-                sendError("This login is not allowed", 401);
+                sendError("Невалидный логин! Логин должен быть не короче 3х символов и состоять только из латинских символов.", 401);
                 return;
             }
 
             if(!password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}")){
-                sendError("This password is not allowed", 401);
+                sendError("Слишком легкий пароль! Пароль должен быть не короче 8ми символов, в пароле должна быть хотя-бы 1 большая буква и хотя-бы 1 цифра.", 401);
                 return;
             }
 
@@ -53,9 +53,13 @@ public class RegisterHandler extends HttpPrimitiveHandler {
             db.registerClient(client);
 
             client = db.tryClientLogin(login, password);
-            sendRequest(new JsonObjectSerializer().serializeObject(client), 200);
+
+            JSONObject answer = new JSONObject();
+            answer.put("Client", new JsonObjectSerializer().serializeObject(client));
+
+            sendRequest(answer, 200);
         } catch (JSONException e) {
-            sendError("Invalid request json", 400);
+            sendError("Невалидное тело json запроса", 400);
             e.printStackTrace();
         }
     }

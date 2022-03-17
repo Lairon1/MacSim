@@ -10,14 +10,14 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class TopUpBalanceHandler extends HttpPrimitiveHandler {
 
-    private DataBaseController db = DataBaseController.getInstance();
+    private DataBaseController db = new DataBaseController();
     private JsonObjectSerializer serializer = new JsonObjectSerializer();
 
     @Override
     public void postHandle() {
         HttpExchange exchange = getHttpExchange();
         if (!exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-            sendError("Use POST request method", 405);
+            sendError("Используйте POST запрос", 405);
             return;
         }
 
@@ -30,23 +30,25 @@ public class TopUpBalanceHandler extends HttpPrimitiveHandler {
             Client client = db.tryClientLogin(login, password);
 
             if(topUpBalance <= 0){
-                sendError("Invalid top up balance count", 401);
+                sendError("Невалидная сума пополнения", 401);
                 return;
             }
 
             if (client == null) {
-                sendError("Wrong login or password", 401);
+                sendError("Неверный логин или пароль", 401);
                 return;
             }
 
-            if(db.TopUpBalance(client, topUpBalance)){
+            client.setBalance(client.getBalance() + topUpBalance);
+
+            if(db.updateClient(client)){
                 answer.put("Client", serializer.serializeObject(db.tryClientLogin(login, password)));
                 sendRequest(answer.toString(), 200);
                 return;
             }
-            sendError("Server error", 500);
+            sendError("Серверная ошибка", 500);
         } catch (JSONException e) {
-            sendError( "Invalid request json", 400);
+            sendError( "Невалидное тело json запроса", 400);
             return;
         }
     }
