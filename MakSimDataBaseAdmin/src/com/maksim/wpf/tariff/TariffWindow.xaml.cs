@@ -22,24 +22,7 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
 
         private List<Tariff> _SortedTariffs;
 
-        public List<string> SortTypes 
-        { 
-            get
-            {
-                List<string> list = new List<string>();
-                list.Add("Не установлено");
-                list.Add("По возрастанию цены");
-                list.Add("По возрастанию гигабайт");
-                list.Add("По возрастанию минут");
-                list.Add("По возрастанию sms");
 
-                list.Add("По убыванию цены");              
-                list.Add("По убыванию гигабайт");
-                list.Add("По убыванию минут");
-                list.Add("По убыванию sms");
-                return list;
-            } 
-        }
 
         public List<Tariff> SortedTariffs 
         {
@@ -106,6 +89,61 @@ namespace MakSimDataBaseAdmin.src.com.maksim.wpf.tariff
             }
             SortedTariffs = tariffs.Where(t => t.Name.ToUpper().Contains(text)).ToList();
         }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            string sortType = SortType.SelectedItem.ToString();
+            switch(sortType) {
+                case "Не установлено":
+                    SortedTariffs = tariffs;
+                    break;
+                case "По возрастанию цены":
+                    SortedTariffs = tariffs.OrderBy(t => t.Price).ToList();
+                    break;
+                case "По возрастанию гигабайт":
+                    SortedTariffs = tariffs.OrderBy(t => t.Gigabytes).ToList();
+                    break;
+                case "По возрастанию минут":
+                    SortedTariffs = tariffs.OrderBy(t => t.Minutes).ToList();
+                    break;
+                case "По возрастанию sms":
+                    SortedTariffs = tariffs.OrderBy(t => t.SMS).ToList();
+                    break;
+                case "По убыванию цены":
+                    SortedTariffs = tariffs.OrderByDescending(t => t.Price).ToList();
+                    break;
+                case "По убыванию гигабайт":
+                    SortedTariffs = tariffs.OrderByDescending(t => t.Gigabytes).ToList();
+                    break;
+                case "По убыванию минут":
+                    SortedTariffs = tariffs.OrderByDescending(t => t.Minutes).ToList();
+                    break;
+                case "По убыванию sms":
+                    SortedTariffs = tariffs.OrderByDescending(t => t.SMS).ToList();
+                    break;
+            }
+
+        }
+
+        public List<string> SortTypes
+        {
+            get
+            {
+                List<string> list = new List<string>();
+                list.Add("Не установлено");
+                list.Add("По возрастанию цены");
+                list.Add("По возрастанию гигабайт");
+                list.Add("По возрастанию минут");
+                list.Add("По возрастанию sms");
+
+                list.Add("По убыванию цены");
+                list.Add("По убыванию гигабайт");
+                list.Add("По убыванию минут");
+                list.Add("По убыванию sms");
+                return list;
+            }
+        }
+
     }
 
     //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
