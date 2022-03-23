@@ -13,7 +13,7 @@ namespace MakSimDataBaseAdmin.src.com.maksim.provider.mysql
     {
 
         private MySqlConnection conn;
-        private string host = "kolei.ru";
+        private string host = "home.kolei.ru";
         private string database = "evseev2";
         private string port = "3306";
         private string username = "evseev2";
