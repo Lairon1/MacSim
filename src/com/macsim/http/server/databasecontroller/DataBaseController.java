@@ -20,7 +20,7 @@ public class DataBaseController {
     private Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
     public DataBaseController init() {
-        String url = "jdbc:mysql://kolei.ru/evseev2";
+        String url = "jdbc:mysql://home.kolei.ru/evseev2";
         String username = "evseev2";
         String password = "123456";
         try {
